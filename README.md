@@ -1,9 +1,8 @@
 
-# 🏥 Predictive Modeling of In-Hospital Patient Mortality and Readmission Using MIMIC-III
+# 🏥 MultiModel Prediction of In-Hospital Patient Mortality and Readmission Using NLP, Clinical-Bert LLM
 
-### 🔬 Capstone Project | University of Maryland, Baltimore County
 
-This project builds an end-to-end machine learning pipeline to predict **in-hospital mortality** and **30-day readmission** using structured data and unstructured **clinical notes** from the MIMIC-III dataset. Our pipeline integrates **ClinicalBERT embeddings**, optimized XGBoost/CatBoost models, and comprehensive interpretability using **SHAP** to guide real-world healthcare decisions.
+This project builds an end-to-end machine learning pipeline to predict **in-hospital mortality** and **readmission** using structured data and unstructured **clinical notes** from the MIMIC-III dataset. Our pipeline integrates **ClinicalBERT embeddings**, optimized XGBoost/CatBoost best models, and comprehensive interpretability using **SHAP** to guide real-world healthcare decisions.
 
 ---
 
@@ -36,14 +35,14 @@ Hospital readmissions and in-hospital deaths represent critical clinical outcome
 | **Readmission Prediction** | Binary classification of `future_admission` within 30 days |
 | **Data Types** | Structured (labs, vitals, demographics) + Clinical notes |
 | **Embedding Model** | ClinicalBERT |
-| **Models** | XGBoost, CatBoost, Voting Classifier |
-| **Evaluation** | AUC, MCC, Confusion Matrix, SHAP |
+| **Models** | XGBoost, CatBoost, Ensemble Voting Classifier, Decision Tree, Linear Regression |
+| **Evaluation** | AUC-RUC, Precision- Recall Curves, MCC, Sensitivity, Specificity, Confusion Matrix, SHAP |
 
 ---
 
 ## 🧾 Data Sources
 
-- **Structured Data:** Vitals, diagnoses, procedures, insurance, demographics (from MIMIC-III)
+- **Structured Data:** Vitals, diagnoses, procedures, insurance, demographics, Patients, Admission, ICU Stays (from MIMIC-III)
 - **Unstructured Data:** Clinical notes from the NOTEEVENTS table
 - **Embedding Model:** `clinicalBERT` via HuggingFace `sentence-transformers`
 
@@ -62,6 +61,8 @@ Hospital readmissions and in-hospital deaths represent critical clinical outcome
      - `XGBoost` (GPU-accelerated)
      - `CatBoost` (categorical-friendly)
      - `VotingClassifier` ensemble
+     - `Decision Tree`
+     - `Linear Regression`
    - Hyperparameter tuning via `RandomizedSearchCV`
 4. **Evaluation**
    - ROC AUC, MCC, Sensitivity, Specificity, Accuracy
@@ -70,7 +71,7 @@ Hospital readmissions and in-hospital deaths represent critical clinical outcome
 
 ---
 
-## 🥇 Model Performance
+## 🥇 Best Model Performance(XG Boost)
 
 | Metric | Mortality (Before) | Mortality (After Embeddings) | Readmission (Before) | Readmission (After Embeddings) |
 |--------|--------------------|-------------------------------|----------------------|-------------------------------|
@@ -129,8 +130,8 @@ jupyter notebook ML-Pipeline-Structured.ipynb
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 - [PhysioNet](https://physionet.org/) for the MIMIC-III dataset
 - [HuggingFace](https://huggingface.co/) for ClinicalBERT embeddings
-- UMBC Faculty for project guidance
+- Professor Muhammad Ali Yousuf for project guidance
